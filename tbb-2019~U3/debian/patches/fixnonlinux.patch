@@ -1,0 +1,68 @@
+Description: tweak system inspection to build on hurd/kFreeBSD/x32 systems
+Author: Mathieu Malaterre <malat@debian.org>
+
+Index: tbb/build/common.inc
+===================================================================
+--- tbb.orig/build/common.inc
++++ tbb/build/common.inc
+@@ -33,6 +33,14 @@ ifndef tbb_os
+   ifeq ($(OS), Linux)
+     export tbb_os=linux
+   endif
++  # hurd-386
++  ifeq ($(OS), GNU)
++    export tbb_os=linux
++  endif
++  # kfreebsd-*
++  ifeq ($(OS), GNU/kFreeBSD)
++    export tbb_os=FreeBSD
++  endif
+   ifeq ($(OS), Darwin)
+     export tbb_os=macos
+   endif
+Index: tbb/build/linux.gcc.inc
+===================================================================
+--- tbb.orig/build/linux.gcc.inc
++++ tbb/build/linux.gcc.inc
+@@ -104,6 +104,11 @@ ifeq (ppc32,$(arch))
+     LIB_LINK_FLAGS += -m32
+ endif
+ 
++ifeq (x32,$(arch))
++    CPLUS_FLAGS += -mx32
++    LIB_LINK_FLAGS += -mx32
++endif
++
+ ifeq (bg,$(arch))
+     CPLUS = $(firstword $(notdir $(shell which powerpc{64,32,}-bg{z..a}-linux-g++ 2>/dev/null)))
+     CONLY = $(firstword $(notdir $(shell which powerpc{64,32,}-bg{z..a}-linux-gcc 2>/dev/null)))
+Index: tbb/build/FreeBSD.inc
+===================================================================
+--- tbb.orig/build/FreeBSD.inc
++++ tbb/build/FreeBSD.inc
+@@ -17,15 +17,22 @@
+ #
+ 
+ ifndef arch
+-        ifeq ($(shell uname -m),i386)
++        uname_m:=$(shell uname -m)
++        uname_a:=$(shell uname -a)
++        ifeq ($(uname_m),i386)
+                 export arch:=ia32
+         endif
+-        ifeq ($(shell uname -m),ia64)
++        ifeq ($(uname_m),ia64)
+                 export arch:=ia64
+         endif
+-        ifeq ($(shell uname -m),amd64)
++        ifeq ($(uname_m),amd64)
+                 export arch:=intel64
+         endif
++        ifndef arch
++                export arch:=$(uname_m)
++                $(warning "FreeBSD Unknown arch: " $(arch))
++                $(warning "FreeBSD Unknown uname_a: " $(uname_a))
++        endif
+ endif
+ 
+ ifndef runtime

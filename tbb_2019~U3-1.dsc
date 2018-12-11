@@ -1,0 +1,6 @@
+Format: 3.0 (quilt)
+Source: tbb
+Version: 2019~U3-1
+Files:
+ 01234567890123456789012345678901 1 tbb_2019~U3.orig.tar.xz
+ 01234567890123456789012345678901 1 tbb_2019~U3-1.debian.tar.xz

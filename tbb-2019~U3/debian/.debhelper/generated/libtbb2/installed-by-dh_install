@@ -1,0 +1,3 @@
+./build/linux_intel64_gcc_cc8_libc2.27_kernel4.18.0_release/libtbb.so.2
+./build/linux_intel64_gcc_cc8_libc2.27_kernel4.18.0_release/libtbbmalloc.so.2
+./build/linux_intel64_gcc_cc8_libc2.27_kernel4.18.0_release/libtbbmalloc_proxy.so.2

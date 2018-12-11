@@ -1,0 +1,41 @@
+Format: 1.8
+Date: Tue, 11 Dec 2018 08:00:31 +0100
+Source: tbb
+Binary: libtbb-dev libtbb2 libtbb-doc tbb-examples
+Built-For-Profiles: nobiarch nocheck nodoc
+Architecture: amd64 all
+Version: 2019~U3-1
+Distribution: UNRELEASED
+Urgency: medium
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Changed-By: Richard Yang <richard@yenforyang.com>
+Description:
+ libtbb-dev - parallelism library for C++ - development files
+ libtbb-doc - parallelism library for C++ - documentation
+ libtbb2    - parallelism library for C++ - runtime files
+ tbb-examples - parallelism library for C++ - example files
+Changes:
+ tbb (2019~U3-1) UNRELEASED; urgency=medium
+ .
+   * New upstream release
+Checksums-Sha1:
+ f798e0597d9e0b7b8a0f469236592708c58270ba 275256 libtbb-dev_2019~U3-1_amd64.deb
+ 4d615ea1e03b5dc5bf86d41a75757b0a495db792 37580 libtbb-doc_2019~U3-1_all.deb
+ 2ca35da10f064fc89a5f486db8389ee168a0efb1 667940 libtbb2-dbgsym_2019~U3-1_amd64.deb
+ 09ddbc81679c3dc36805ec5b75b2c9e1cc1742e9 187860 libtbb2_2019~U3-1_amd64.deb
+ 9110b2be56ef6770237ac454c89d53435fec8caa 36368 tbb-examples_2019~U3-1_amd64.deb
+ d0237054123bc5460f26565bfef84df3420d27b9 6357 tbb_2019~U3-1_amd64.buildinfo
+Checksums-Sha256:
+ 87142d89c0196bd70a55636d033056a47b06743984d3702b06481cef38365bdc 275256 libtbb-dev_2019~U3-1_amd64.deb
+ 933ba20e253ca84531b267b024bdc7b0c4de4c492ecf43dcb30346c439ed3392 37580 libtbb-doc_2019~U3-1_all.deb
+ 33154530d3b46967be00fd857dc02c2c8821a3f25a9f563ef722829cad0b5572 667940 libtbb2-dbgsym_2019~U3-1_amd64.deb
+ 4fa73a68ba6b258be679885ec939f5646e7a64f94bfb463fb65c31e94e3cd287 187860 libtbb2_2019~U3-1_amd64.deb
+ 9b73ca4df7e80dab762d5495919fd5806ae7c503109437408d7d13eee19beade 36368 tbb-examples_2019~U3-1_amd64.deb
+ aca82211347d14fe3d69b2edd5fa20b04da93bd5d1cbf6128ed18477804f35ee 6357 tbb_2019~U3-1_amd64.buildinfo
+Files:
+ 2b7861f0b097dddc977b67289a34ea31 275256 libdevel optional libtbb-dev_2019~U3-1_amd64.deb
+ bc65387aa03896eab2484e723495224a 37580 doc optional libtbb-doc_2019~U3-1_all.deb
+ b65de17b85531956ea536ac940730197 667940 debug optional libtbb2-dbgsym_2019~U3-1_amd64.deb
+ b9afe49ea9c94db5aa5cd99732843594 187860 libs optional libtbb2_2019~U3-1_amd64.deb
+ 53fa7098776efbfb486fa9ba4da84337 36368 doc optional tbb-examples_2019~U3-1_amd64.deb
+ cd62bc770a957d5889ebc326e9c30601 6357 libs optional tbb_2019~U3-1_amd64.buildinfo

@@ -1,0 +1,17 @@
+Description: Tweak 64 bits detection
+Author: Mathieu Malaterre <malat@debian.org>
+[Steve Capper: rebase to 2017~U7, rename hppa to parisc and add alpha]
+
+Index: tbb/build/linux.inc
+===================================================================
+--- tbb.orig/build/linux.inc
++++ tbb/build/linux.inc
+@@ -118,7 +118,7 @@ SONAME_SUFFIX =$(shell grep TBB_COMPATIB
+ ifeq ($(arch),ia64)
+         def_prefix = lin64ipf
+ endif
+-ifneq (,$(findstring $(arch),sparc s390x))
++ifneq (,$(findstring $(arch),sparc s390x parisc64 alpha))
+         def_prefix = lin64
+ endif
+ ifeq ($(arch),armv7)

@@ -1,0 +1,16 @@
+adddebug.patch
+fixnonlinux.patch
+buildi386.patch
+linuxreleasedetect.patch
+tally-unit-test-fails.patch
+gcc-atomic-detection.patch
+gcc-atomic-always.patch
+tweak-64bits-hppa-alpha.patch
+removejsquery.patch
+cross.patch
+fix-armel.patch
+allow-reproducible-builds.patch
+fixup-mips-harness.patch
+enhanced-debugging.patch
+remove-unaligned-test.patch
+armel-exception-ptr.patch

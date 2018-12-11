@@ -1,0 +1,11 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib/@DEB_HOST_MULTIARCH@
+includedir=${prefix}/include
+
+Name: Threading Building Blocks
+Description: Intel's parallelism library for C++
+URL: http://www.threadingbuildingblocks.org/
+Version: @VERSION@
+Libs: -ltbb -latomic
+Cflags:

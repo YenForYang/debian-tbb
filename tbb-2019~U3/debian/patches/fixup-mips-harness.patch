@@ -1,0 +1,16 @@
+Description: Use 1MB stack on 32-bit MIPS, fix out of memory error on thread creation
+Author: Steve Capper <steven.capper@gmail.com>
+
+Index: tbb/src/test/harness.h
+===================================================================
+--- tbb.orig/src/test/harness.h
++++ tbb/src/test/harness.h
+@@ -540,7 +540,7 @@ public:
+         // calls to pthread_create fail with out-of-memory error.
+         // Therefore we set the stack size explicitly (as for TBB worker threads).
+ #if !defined(HARNESS_THREAD_STACK_SIZE)
+-#if __i386__||__i386||__arm__
++#if __i386__||__i386||__arm__||(_MIPS_ISA == _MIPS_ISA_MIPS32)
+         const size_t stack_size = 1*MByte;
+ #elif __x86_64__
+         const size_t stack_size = 2*MByte;

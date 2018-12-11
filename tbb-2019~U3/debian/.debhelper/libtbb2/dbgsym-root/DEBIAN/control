@@ -1,0 +1,13 @@
+Package: libtbb2-dbgsym
+Source: tbb
+Version: 2019~U3-1
+Auto-Built-Package: debug-symbols
+Architecture: amd64
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Installed-Size: 793
+Depends: libtbb2 (= 2019~U3-1)
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libtbb2
+Build-Ids: 5d4e6754d39e363ccdab55487b7a7c0807ed7785 81a1d0adc3f62b562aeb0abf5c569cc9e93b133e dc15a33980d2ed479c8fe08afe831b5a86f7a789

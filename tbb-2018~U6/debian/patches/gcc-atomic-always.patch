@@ -1,0 +1,17 @@
+Description: Always define TBB_USE_GCC_BUILTINS on GCC.
+Author: Adam Conrad <adconrad@ubuntu.com>
+
+Index: tbb/include/tbb/tbb_machine.h
+===================================================================
+--- tbb.orig/include/tbb/tbb_machine.h
++++ tbb/include/tbb/tbb_machine.h
+@@ -229,6 +229,9 @@ template<> struct atomic_selector<8> {
+ 
+ #elif __linux__ || __FreeBSD__ || __NetBSD__
+ 
++    #ifndef TBB_USE_GCC_BUILTINS
++        #define TBB_USE_GCC_BUILTINS 1
++    #endif
+     #if (TBB_USE_GCC_BUILTINS && __TBB_GCC_BUILTIN_ATOMICS_PRESENT)
+         #include "machine/gcc_generic.h"
+     #elif (TBB_USE_ICC_BUILTINS && __TBB_ICC_BUILTIN_ATOMICS_PRESENT)

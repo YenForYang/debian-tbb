@@ -1,0 +1,5 @@
+./include/tbb
+./build/linux_intel64_gcc_cc8_libc2.27_kernel4.18.0_release/libtbb.so
+./build/linux_intel64_gcc_cc8_libc2.27_kernel4.18.0_release/libtbbmalloc.so
+./build/linux_intel64_gcc_cc8_libc2.27_kernel4.18.0_release/libtbbmalloc_proxy.so
+./debian/tbb.pc

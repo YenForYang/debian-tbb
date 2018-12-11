@@ -1,0 +1,20 @@
+Description: __TBB_EXCEPTION_PTR_PRESENT fix for armel
+ exception_ptr in GCC >= 7 no longer requires atomic instructions.
+Author: Adrian Bunk <bunk@debian.org>
+
+Index: tbb/include/tbb/tbb_config.h
+===================================================================
+--- tbb.orig/include/tbb/tbb_config.h
++++ tbb/include/tbb/tbb_config.h
+@@ -241,8 +241,9 @@
+     #define __TBB_IMPLICIT_MOVE_PRESENT                     (__GXX_EXPERIMENTAL_CXX0X__ && __TBB_GCC_VERSION >= 40600)
+     /** __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 here is a substitution for _GLIBCXX_ATOMIC_BUILTINS_4, which is a prerequisite
+         for exception_ptr but cannot be used in this file because it is defined in a header, not by the compiler.
+-        If the compiler has no atomic intrinsics, the C++ library should not expect those as well. **/
+-    #define __TBB_EXCEPTION_PTR_PRESENT                     (__GXX_EXPERIMENTAL_CXX0X__ && __TBB_GCC_VERSION >= 40404 && __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4)
++        GCC >= 7 has exception_ptr even without atomic instructions:
++        https://gcc.gnu.org/bugzilla/show_bug.cgi?id=64735#c11 **/
++    #define __TBB_EXCEPTION_PTR_PRESENT                     (__GXX_EXPERIMENTAL_CXX0X__ && __TBB_GCC_VERSION >= 40404 && (__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 || (__TBB_GCC_VERSION >= 70000)))
+     #define __TBB_STATIC_ASSERT_PRESENT                     (__GXX_EXPERIMENTAL_CXX0X__ && __TBB_GCC_VERSION >= 40300)
+     #define __TBB_CPP11_TUPLE_PRESENT                       (__GXX_EXPERIMENTAL_CXX0X__ && __TBB_GCC_VERSION >= 40300)
+     #define __TBB_INITIALIZER_LISTS_PRESENT                 (__GXX_EXPERIMENTAL_CXX0X__ && __TBB_GCC_VERSION >= 40400)

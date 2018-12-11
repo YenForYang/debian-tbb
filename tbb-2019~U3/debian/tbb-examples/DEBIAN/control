@@ -1,0 +1,17 @@
+Package: tbb-examples
+Source: tbb
+Version: 2019~U3-1
+Architecture: amd64
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Installed-Size: 44
+Recommends: libtbb-dev, libtbb-doc
+Section: doc
+Priority: optional
+Homepage: https://www.threadingbuildingblocks.org/
+Description: parallelism library for C++ - example files
+ TBB is a library that helps you leverage multi-core processor
+ performance without having to be a threading expert. It represents a
+ higher-level, task-based parallelism that abstracts platform details
+ and threading mechanism for performance and scalability.
+ .
+ This package includes the TBB example files.

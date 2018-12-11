@@ -1,0 +1,22 @@
+Package: libtbb2
+Source: tbb
+Version: 2019~U3-1
+Architecture: amd64
+Maintainer: Debian Science Maintainers <debian-science-maintainers@lists.alioth.debian.org>
+Installed-Size: 706
+Depends: libc6 (>= 2.14), libgcc1 (>= 1:3.0), libstdc++6 (>= 7)
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.threadingbuildingblocks.org/
+Description: parallelism library for C++ - runtime files
+ TBB is a library that helps you leverage multi-core processor
+ performance without having to be a threading expert. It represents a
+ higher-level, task-based parallelism that abstracts platform details
+ and threading mechanism for performance and scalability.
+ .
+ (Note: if you are a user of the i386 architecture, i.e., 32-bit Intel
+ or compatible hardware, this package only supports Pentium4-compatible
+ and higher processors.)
+ .
+ This package includes the TBB runtime files.

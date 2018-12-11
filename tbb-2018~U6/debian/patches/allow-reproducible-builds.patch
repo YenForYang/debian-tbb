@@ -1,0 +1,58 @@
+Index: tbb/build/linux.inc
+===================================================================
+--- tbb.orig/build/linux.inc
++++ tbb/build/linux.inc
+@@ -83,10 +83,9 @@ endif
+ ifndef runtime
+         export gcc_version:=$(shell gcc -dumpversion)
+         os_version:=$(shell uname -r)
+-        os_kernel_version:=$(shell uname -r | sed -e 's/-.*$$//')
+         export os_glibc_version_full:=$(shell getconf GNU_LIBC_VERSION | grep glibc | sed -e 's/^glibc //')
+         os_glibc_version:=$(shell echo "$(os_glibc_version_full)" | sed -e '2,$$d' -e 's/-.*$$//')
+-        export runtime:=cc$(gcc_version)_libc$(os_glibc_version)_kernel$(os_kernel_version)
++        export runtime:=cc$(gcc_version)_libc$(os_glibc_version)
+ endif
+ 
+ native_compiler := gcc
+Index: tbb/src/rml/server/rml_server.cpp
+===================================================================
+--- tbb.orig/src/rml/server/rml_server.cpp
++++ tbb/src/rml/server/rml_server.cpp
+@@ -3291,10 +3291,10 @@ extern "C" void __KMP_call_with_my_serve
+ #endif
+ 
+ #if !RML_USE_WCRM
+-#define RML_SERVER_BUILD_TIME "Intel(R) RML library built: " __TBB_DATETIME
++#define RML_SERVER_BUILD_TIME "Intel(R) RML library built: unknown"
+ #define RML_SERVER_VERSION_ST "Intel(R) RML library version: v" TOSTRING(SERVER_VERSION)
+ #else
+-#define RML_SERVER_BUILD_TIME "Intel(R) RML library built: " __TBB_DATETIME
++#define RML_SERVER_BUILD_TIME "Intel(R) RML library built: unknown"
+ #define RML_SERVER_VERSION_ST "Intel(R) RML library version: v" TOSTRING(SERVER_VERSION) " on ConcRT RM with " RML_THREAD_KIND_STRING
+ #endif
+ 
+Index: tbb/build/version_info_linux.sh
+===================================================================
+--- tbb.orig/build/version_info_linux.sh
++++ tbb/build/version_info_linux.sh
+@@ -20,15 +20,15 @@
+ 
+ # Script used to generate version info string
+ echo "#define __TBB_VERSION_STRINGS(N) \\"
+-echo '#N": BUILD_HOST'"\t\t"`hostname -s`" ("`uname -m`")"'" ENDL \'
++echo '#N": BUILD_HOST'"\t\t"Debian-build-host" ("`uname -m`")"'" ENDL \'
+ # find OS name in *-release and issue* files by filtering blank lines and lsb-release content out
+ echo '#N": BUILD_OS'"\t\t"`lsb_release -sd 2>/dev/null | grep -ih '[a-z] ' - /etc/*release /etc/issue 2>/dev/null | head -1 | sed -e 's/["\\\\]//g'`'" ENDL \'
+-echo '#N": BUILD_KERNEL'"\t"`uname -srv`'" ENDL \'
+-echo '#N": BUILD_GCC'"\t\t"`g++ --version </dev/null 2>&1 | grep 'g++'`'" ENDL \'
++echo '#N": BUILD_KERNEL'"\t"`uname -s`'" ENDL \'
++echo '#N": BUILD_GCC'"\t\t"g++'" ENDL \'
+ [ -z "$COMPILER_VERSION" ] || echo '#N": BUILD_COMPILER'"\t"$COMPILER_VERSION'" ENDL \'
+ echo '#N": BUILD_LIBC'"\t"`getconf GNU_LIBC_VERSION | grep glibc | sed -e 's/^glibc //'`'" ENDL \'
+ echo '#N": BUILD_LD'"\t\t"`ld -v 2>&1 | grep 'version'`'" ENDL \'
+ echo '#N": BUILD_TARGET'"\t$arch on $runtime"'" ENDL \'
+-echo '#N": BUILD_COMMAND'"\t"$*'" ENDL \'
++echo '#N": BUILD_COMMAND'"\t"g++'" ENDL \'
+ echo ""
+-echo "#define __TBB_DATETIME \""`date -u`"\""
++echo "#define __TBB_DATETIME \""unknown"\""

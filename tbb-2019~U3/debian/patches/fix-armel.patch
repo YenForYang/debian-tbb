@@ -1,0 +1,34 @@
+Description: Allow TBB to build on armel systems (__ARM_ARCH == 4)
+Author: Steve Capper <steven.capper@gmail.com>
+
+Index: tbb/src/tbbmalloc/frontend.cpp
+===================================================================
+--- tbb.orig/src/tbbmalloc/frontend.cpp
++++ tbb/src/tbbmalloc/frontend.cpp
+@@ -761,7 +761,7 @@ static inline unsigned int highestBitPos
+ # else
+ #   error highestBitPos() not implemented for this platform
+ # endif
+-#elif __arm__
++#elif __ARM_ARCH_7A__
+     __asm__ __volatile__
+     (
+        "clz %0, %1\n"
+Index: tbb/build/linux.inc
+===================================================================
+--- tbb.orig/build/linux.inc
++++ tbb/build/linux.inc
+@@ -58,9 +58,12 @@ ifndef arch
+         ifeq ($(uname_m),sparc64)
+                 export arch:=sparc64
+         endif
+-        ifeq ($(uname_m),armv7l)
++        ifeq ($(deb_host_arch),armhf)
+                 export arch:=armv7
+         endif
++	ifeq ($(deb_host_arch),armel)
++		export arch:=armv4t
++	endif
+         ifeq ($(uname_m),ppc)
+                 export arch:=ppc32
+         endif
